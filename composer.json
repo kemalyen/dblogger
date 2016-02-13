@@ -1,0 +1,33 @@
+{
+    "name": "gazatem/dblogger",
+    "description": "A Laravel package, helps to log into database and send email alerts",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["laravel", "log", "alert mailing", "monitoring"],
+    "authors": [
+        {
+            "name": "Kemal Yenilmez",
+            "email": "kemal@gazatem.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/database": "~5.0",
+        "illuminate/support": "~5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gazatem\\DBLogger\\": "src/"
+        }
+    },
+    "scripts" : {
+        "post-install-cmd" : [
+            "php artisan optimize"
+        ],
+    "post-update-cmd" : [
+      "php artisan clear-compiled",
+      "php artisan optimize"
+    ]
+  }
+}

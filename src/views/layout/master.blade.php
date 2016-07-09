@@ -12,15 +12,21 @@
 </head>
 <body>
   @include('glog::partials.navigation')
-  <div class="container">
+  <div class="container" style="padding-top:50px">
     <div class="row">
       <div class="col-xs-12">
+        @include('glog::partials.notifications')
         <h1>@yield('heading')</h1>
-
         @yield('content')
       </div>
     </div>
   </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted">      &copy; 2016 <a href="http://www.gazatem.com">Gazatem</a> </p>
+    </div>
+  </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>

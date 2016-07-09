@@ -20,14 +20,20 @@ class GlogServiceProvider extends ServiceProvider
         ], 'glog');
 
         $this->publishes([
-            __DIR__.'/public' => public_path('vendor/gazatem/dblogger-gui'),
+            __DIR__.'/public' => public_path('vendor/gazatem/glog'),
         ], 'public');
 
-
         $this->setupRoutes($this->app->router);
-
         $this->loadViewsFrom(__DIR__ . '/views', 'glog');
+        $this->bladeDirectives();
     }
+
+    private function bladeDirectives()
+    {
+        \Blade::directive('logMessage', function($log_text) {
+            return "<?php \\Gazatem\Glog\OutputGenerator::get_message({$log_text}); ?>";
+        });
+     }
 
     public function setupRoutes(Router $router)
     {

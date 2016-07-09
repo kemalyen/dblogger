@@ -1,11 +1,9 @@
 @extends('glog::layout.master')
-
 @section('content')
-
-
     <div class="row">
         <div class="col-xs-6 col-lg-offset-3">
-            <form class="form-horizontal" action="" method="get">
+            <form class="form-horizontal" action="{{ route('glog_clear_logs') }}" method="post">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
              <div class="form-group">
                  <label for="level">Level:</label>
                  <select name="level" id="level" class="form-control">
@@ -65,4 +63,3 @@
         $('select').select2();
     </script>
  @stop
-

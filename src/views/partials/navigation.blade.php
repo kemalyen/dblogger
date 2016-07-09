@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-custom navbar-fixed-top">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -8,18 +8,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">gLog GUI</a>
+      <a class="navbar-brand logo" href="#">Glog GUI</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-menu">
-      <ul class="nav navbar-nav">
-        <li class="active{{ (Request::is('*users*') ? 'active' : '') }}"><a href="/logs">Home</a></li>
-        <li class="{{ (Request::is('*users*') ? 'active' : '') }}"><a href="/logs/clear-logs">Clear Logs</a></li>
-
+      <ul class="nav navbar-nav navbar-right">
+        <li class="{{ (Request::is('*users*') ? 'active' : '') }}"><a href="{{ route('glog_index') }}">Logs</a></li>
+        <li class="{{ (Request::is('*users*') ? 'active' : '') }}"><a href="{{ route('glog_clear_logs') }}">Clear</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-

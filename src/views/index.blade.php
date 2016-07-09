@@ -54,7 +54,7 @@
             </div>
             <div class="vright">
                 <strong>{{ isset($translations[$log->channel]) ? $translations[$log->channel] : $log->channel }}</strong>
-                <pre>{{ $log->context }}</pre>
+                <pre>@logMessage($log->context)</pre>
                 <div class="subtitle">
                     <span class="glyphicon glyphicon-time"></span> {{ $log->getDateDiff() }} |  {{ date('d F Y H:s:i', strtotime($log->created_at)) }}
                 </div>
@@ -78,4 +78,3 @@
         $('select').select2();
     </script>
  @stop
-

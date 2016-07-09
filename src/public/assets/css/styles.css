@@ -26,3 +26,39 @@ strong{
 .vright {
     display: block;
 }
+
+.logo {
+    color: #c7254e;
+    font-size: 140%;
+}
+
+.navbar-custom {
+    background-color:#dedede;
+    color:#c7254e;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#c7254e;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #c7254e;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#c7254e;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}

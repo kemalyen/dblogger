@@ -1,23 +1,22 @@
 <?php
 
-namespace Gazatem\DBLogger;
+namespace Gazatem\Glog;
 
-use Gazatem\DBLogger\Model\Log as Logger;
+use Gazatem\Glog\Model\Log as Logger;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Handler\Curl\Util;
 use Illuminate\Support\Facades\Mail;
 
-class DBLogger extends AbstractProcessingHandler
+class Glog extends AbstractProcessingHandler
 {
-
     private $httpConnection = null;
 
     protected function write(array $record)
     {
-        $hasLevel = in_array($record['level_name'], config('dblogger.levels'));
-        $hasChannel = in_array($record['message'], config('dblogger.channels'));
+        $hasLevel = in_array($record['level_name'], config('glog.levels'));
+        $hasChannel = in_array($record['message'], config('glog.channels'));
 
-        $notifications = config('dblogger.notification');
+        $notifications = config('glog.notification');
 
         $send_notification = 0;
         foreach ($notifications as $key => $value) {
@@ -27,21 +26,21 @@ class DBLogger extends AbstractProcessingHandler
         }
 
         if ($send_notification) {
-            $messages = config('dblogger.messages');
+            $messages = config('glog.messages');
 
             $data = ['record' => $record, 'action' => (isset($messages[$record['message']]) ? $messages[$record['message']] : $record['message'])];
-            Mail::send("dblogger::notification", $data, function ($message) {
-                $message->to(config('dblogger.mail_to'))->subject(config('dblogger.mail_subject'));
+            Mail::send("glog::notification", $data, function ($message) {
+                $message->to(config('glog.mail_to'))->subject(config('glog.mail_subject'));
             });
         }
 
         if ($hasLevel && $hasChannel) {
-            if (config('dblogger.service') === 'remote') {
+            if (config('glog.service', 'local') === 'remote') {
                 $this->post_remote($record);
             } else {
                 Logger::create(
                     [
-                        'message' => $record['message'],
+                        'channel' => $record['message'],
                         'context' => json_encode($record['context']),
                         'level' => $record['level'],
                         'level_name' => $record['level_name'],
@@ -52,8 +51,6 @@ class DBLogger extends AbstractProcessingHandler
 
     private function post_remote(array $record)
     {
-
-
         $date = $record['datetime'];
 
         $data = array('time' => $date->format('Y-m-d\TH:i:s.uO'));
@@ -83,7 +80,7 @@ class DBLogger extends AbstractProcessingHandler
 
         curl_setopt($this->httpConnection, CURLOPT_POSTFIELDS,  $data);
         curl_setopt($this->httpConnection, CURLOPT_HTTPHEADER, array(
-                "Authorization: Bearer ". config('dblogger.api_key'),
+                "Authorization: Bearer ". config('glog.api_key', '12345'),
                 'Content-Type: application/json',
                 'Content-Length: ' . strlen($data)
             )
@@ -101,10 +98,10 @@ class DBLogger extends AbstractProcessingHandler
             throw new \LogicException('The curl extension is needed to use http URLs');
         }
 
-        $this->httpConnection = curl_init(config('dblogger.remote_host'));
+        $this->httpConnection = curl_init(config('glog.remote_host', 'http://ap.gazatem.com'));
 
         if (!$this->httpConnection) {
-            throw new \LogicException('Unable to connect to ' . config('dblogger.remote_host'));
+            throw new \LogicException('Unable to connect to ' . config('glog.remote_host', 'http://ap.gazatem.com'));
         }
 
         curl_setopt($this->httpConnection, CURLOPT_POST, "POST");

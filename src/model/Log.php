@@ -1,5 +1,5 @@
 <?php
-namespace Gazatem\DBLogger\Model;
+namespace Gazatem\Glog\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;

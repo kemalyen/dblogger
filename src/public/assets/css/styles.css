@@ -1,0 +1,28 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
+
+body {
+    margin-top: 60px;
+}
+form {
+    margin-bottom: 0;
+}
+
+strong{
+    line-height: 180%;
+}
+
+.subtitle{
+    font-size: 80%;
+    border-top:1px solid #cecece;
+    padding: 10px;
+    text-align: right;
+}
+
+.vleft {
+    float: left;
+    padding: 10px;
+}
+
+.vright {
+    display: block;
+}

@@ -1,5 +1,5 @@
 {
-    "name": "gazatem/dblogger",
+    "name": "gazatem/glog",
     "description": "A Laravel package, helps to log into database and send email alerts",
     "type": "library",
     "license": "MIT",
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Gazatem\\DBLogger\\": "src/"
+            "Gazatem\\Glog\\": "src/"
         }
     },
     "scripts" : {

@@ -1,13 +1,13 @@
-<?php namespace Gazatem\DBLogger\Facade;
+<?php namespace Gazatem\Glog\Facade;
 
 use Illuminate\Support\Facades\Facade;
 
-class DBLogger extends Facade
+class Glog extends Facade
 {
 
     protected static function getFacadeAccessor()
     {
-        return 'dblogger';
+        return 'glog';
     }
 
 }

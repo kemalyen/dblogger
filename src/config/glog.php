@@ -2,18 +2,24 @@
 
 
 return [
-    'service'  => 'local',
-    'api_key'   => '123456789',
-    'remote_host'   => 'http://homestead.app/api/log',
+
+    'service'   => 'local',
+
     'levels' => ['EMERGENCY', 'ALERT', 'CRITICAL', 'ERROR', 'WARNING', 'NOTICE', 'INFO', 'DEBUG'],
-    'channels' => ['dblogger', 'user.register', 'user.login', 'user.activation'],
+
+    'channels' => ['log', 'user.register', 'user.login', 'user.activation', 'action.failed'],
+
     'notification' => ['user.fail' => ['CRITICAL', 'ALERT'], 'user.register' => ['NOTICE'], 'user.login' => ['NOTICE'],],
-    'mail_subject' => 'DbLogger notification mail',
+
+    'mail_subject' => 'gLogger notification mail',
+
     'mail_to' => env('MAIL_FROM', null),
-    'messages' => [
-        'user.fail' => 'A user failed',
+    'translations' => [
+        'action.failed' => 'Action failed',
         'user.register' => 'A new user registered',
-    ]
+        'log'   => 'LOG',
+    ],
+    'route-prefix' => 'logs',
 ];
 
 

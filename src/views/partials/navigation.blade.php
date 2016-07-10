@@ -14,7 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-menu">
       <ul class="nav navbar-nav navbar-right">
-        <li class="{{ (Request::is('*users*') ? 'active' : '') }}"><a href="{{ route('glog_index') }}">Logs</a></li>
+        <li class="{{ (Request::is('*users*') ? 'active' : '') }}"><a href="{{ route('glog_index') }}">Web Logs</a></li>
         <li class="{{ (Request::is('*users*') ? 'active' : '') }}"><a href="{{ route('glog_clear_logs') }}">Clear</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

@@ -36,8 +36,8 @@ class ResetController extends Controller
               if ($message != null){
                   $query->where("message" ,$message);
               }
-          })
-          ->delete();
+          });
+          $logs->delete();
           return redirect('logs')->with('success', "Logs has been deleted!");
     }
 

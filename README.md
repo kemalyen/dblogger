@@ -1,7 +1,14 @@
-## A Log Handler for Monolog and Laravel PHP Framework
+## This package has been renmaed and moved to Glog
+
+I've decided to put Gui and library into a standalone package. This will be helpful for development and testing. 
+
+[https://github.com/gazatem/glog](https://github.com/gazatem/glog)
 
 
-## Installation
+### A Log Handler for Monolog and Laravel PHP Framework
+
+
+### Installation
 
 Add the following to your composer.json and run `composer update`
 
